@@ -57,6 +57,8 @@ class ParkingLotChartController < ApplicationController
 
     if sum == 0
       return 0
+    elsif total_hours == 0
+      return 0
     else
       return round(sum / total_hours * 100)
     end
@@ -120,6 +122,7 @@ class ParkingLotChartController < ApplicationController
 
   private
   def find_issues_open_status
-    @open_statuses = IssueStatus.find_all_by_is_closed(false)
+    # @open_statuses = IssueStatus.find_all_by_is_closed(false)
+    @open_statuses = IssueStatus.where(is_closed: false)
   end
 end
